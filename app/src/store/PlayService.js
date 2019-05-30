@@ -30,9 +30,9 @@ const state = {
 
 const getters = {
   currentTime: state =>
-    parseInt(state.currentTime / 60) + ':' (Array(2).join(0) + (state.currentTime % 60)).slice(-2),
+    parseInt(state.currentTime / 60) + ':' + (Array(2).join(0) + (state.currentTime % 60)).slice(-2),
   duration: state =>
-    parseInt(state.duration / 60) + ':' (Array(2).join(0) + (state.duration % 60)).slice(-2),
+    parseInt(state.duration / 60) + ':' + (Array(2).join(0) + (state.duration % 60)).slice(-2),
   coverImgUrl: state => {
     if(typeof state.song.albummid === 'undefined')
       return def.DEFAULT_IMG;
@@ -49,7 +49,7 @@ const mutations = {
   setPlayList (state, playList) {
     state.playList = playList.list;
     state.index = playList.index;
-    state.song = state.playList[index];
+    state.song = state.playList[state.index];
   },
   addToPlayList (state, item) {
     state.playList.push(item);

@@ -17,8 +17,8 @@
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
-    <transition name="play-slide" @after-enter="showBlurBg" >
-      <!-- <play v-show="playPageShow"></play> -->
+    <transition name="play-slide" @after-enter="showBlurBg" @before-leave="hideBlurBg" @after-leave="routerViewAnimation='page-slide'">
+      <play v-show="playPageShow"></play>
     </transition>
 
     <transition class="bar-slide">
@@ -43,6 +43,7 @@ import ActionSheet from "./components/ActionSheet";
 import Search from "./components/Search";
 import Rank from "./components/Rank";
 import Recommand from "./components/Recommand";
+import Play from './components/Play'
 
 import { mapMutations, mapState, mapGetters } from "vuex";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
@@ -58,6 +59,7 @@ export default {
     Search,
     Rank,
     Recommand,
+    Play,
     swiper,
     swiperSlide
   },

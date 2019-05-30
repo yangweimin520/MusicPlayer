@@ -36,8 +36,8 @@
             <div class="music-name" :class="{dark:isDark}">{{ item.data.songorig }}</div>
             <div class="music-singer">
               <span
-                v-for="(singername, index) in item.data.singer"
-                :key="index"
+                v-for="(singername, index2) in item.data.singer"
+                :key="index2"
               >{{ singername.name }}-</span>
               <span>{{ item.data.albumname }}</span>
             </div>
@@ -103,8 +103,7 @@ export default {
               mid: that.topListData.songlist[that.menuedIndex].data.songmid,
               name: that.topListData.songlist[that.menuedIndex].data.songorig,
               singer: that.topListData.songlist[that.menuedIndex].data.singer,
-              albummid:
-                that.topListData.songlist[that.menuedIndex].data.albummid
+              albummid: that.topListData.songlist[that.menuedIndex].data.albummid
             });
           },
           ["addToPlayList"]() {
@@ -113,8 +112,7 @@ export default {
               mid: that.topListData.songlist[that.menuedIndex].data.songmid,
               name: that.topListData.songlist[that.menuedIndex].data.songorig,
               singer: that.topListData.songlist[that.menuedIndex].data.singer,
-              albummid:
-                that.topListData.songlist[that.menuedIndex].data.albummid
+              albummid: that.topListData.songlist[that.menuedIndex].data.albummid
             });
           }
         }
