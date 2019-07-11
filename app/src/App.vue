@@ -20,6 +20,9 @@
     <transition name="play-slide" @after-enter="showBlurBg" @before-leave="hideBlurBg" @after-leave="routerViewAnimation='page-slide'">
       <play v-show="playPageShow"></play>
     </transition>
+    <transition name="play-slide">
+      <playing-list v-if="$store.state.NotifyService.playingList.show"></playing-list>
+    </transition>
 
     <transition class="bar-slide">
       <div id="play-bar" v-show="!playPageShow">
@@ -44,6 +47,7 @@ import Search from "./components/Search";
 import Rank from "./components/Rank";
 import Recommand from "./components/Recommand";
 import Play from './components/Play'
+import PlayingList from './components/PlayingList'
 
 import { mapMutations, mapState, mapGetters } from "vuex";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
@@ -60,6 +64,7 @@ export default {
     Rank,
     Recommand,
     Play,
+    PlayingList,
     swiper,
     swiperSlide
   },
@@ -203,5 +208,156 @@ body {
     height: 20px;
     padding-right: 15px;
   }
+}
+
+.page-slide-enter-active {
+  transition: all 0.3s ease;
+}
+
+.page-slide-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.page-slide-enter,
+.page-slide-leave-active {
+  transform: translateX(100%);
+}
+
+.fade-enter-active {
+  transition: all 0.3s ease;
+}
+
+.fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.play-slide-enter-active {
+  transition: all 0.3s ease;
+}
+
+.play-slide-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.play-slide-enter,
+.play-slide-leave-active {
+  transform: translateY(100vh);
+}
+
+.bar-slide-enter-active {
+  transition: all 0.3s ease;
+}
+
+.bar-slide-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.bar-slide-enter,
+.bar-slide-leave-active {
+  margin-bottom: -50px;
+}
+
+@media screen and (min-width: 68vh) {
+  body {
+    width: 68vh;
+    margin: 0 auto;
+  }
+
+  #play-bar {
+    width: 68vh;
+  }
+}
+
+.border-1px {
+  position: relative;
+}
+
+.border-1px-after:after {
+  border-top: 1px solid #d0d0d0;
+  content: " ";
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.border-1px-before:before {
+  border-top: 1px solid #d0d0d0;
+  content: " ";
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.border-1px:before {
+  top: 0;
+}
+
+.border-1px:after {
+  bottom: 0;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5) {
+  .border-1px:after,
+  .border-1px:before {
+    -webkit-transform: scaleY(0.7);
+    -webkit-transform-origin: 0 0;
+    transform: scaleY(0.7);
+  }
+
+  .border-1px:after {
+    -webkit-transform-origin: left bottom;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .border-1px:after,
+  .border-1px:before {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+}
+
+@-webkit-keyframes imgFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes imgFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+img[lazy="loaded"] {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: imgFadeIn;
+  animation-name: imgFadeIn;
+}
+
+img[lazy="error"] {
+  border-radius: 2px;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: imgFadeIn;
+  animation-name: imgFadeIn;
 }
 </style>

@@ -23,7 +23,7 @@ export default {
       state.playingList.show = true;
     },
     closePlayingList(state) {
-      state.playingListShow.show = false;
+      state.playingList.show = false;
     }
   },
   actions: {
@@ -35,7 +35,7 @@ export default {
       })
       commit('showActionSheet', options.menus)
     },
-    responceFromActionSheet({state}, menu) {
+    responseFromActionSheet({state}, menu) {
       state.actionSheet.subject.next(menu);
       state.actionSheet.subject.complete();
     }

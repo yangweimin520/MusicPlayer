@@ -1,20 +1,20 @@
 import * as def from '../config/def'
 import store from './index'
 
-const player = new Audio();
-// player.on("timeupdate", function () {
-//     store.commit(
-//         "updateCurrentTime",
-//         parseInt(player.currentTime)
-//       );
-//       store.commit(
-//         "updateDuration",
-//         parseInt(player.duration)
-//       );
-// });
-// player.on("ended", function () {
-//     store.commit("playContinue");
-// });
+const player = new QMplayer();
+player.on("timeupdate", function () {
+    store.commit(
+        "updateCurrentTime",
+        parseInt(player.currentTime)
+      );
+      store.commit(
+        "updateDuration",
+        parseInt(player.duration)
+      );
+});
+player.on("ended", function () {
+    store.commit("playContinue");
+});
 
 const state = {
   playing: false,
@@ -83,6 +83,10 @@ const mutations = {
     state.duration = time
   },
   play(state) {
+    player.play(state.song.mid);
+    state.playing = true;
+  },
+  pause(state) {
     player.pause();
     state.playing = false;
   },

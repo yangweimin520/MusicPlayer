@@ -8,7 +8,7 @@
         @click="showRank(item.id)"
       >
         <div class="rank-media">
-          <img v-lazy="item.picUrl">
+          <img :src="item.picUrl">
           <span class="listen-count">{{item.listenCount | listenCount}}</span>
         </div>
         <div class="rank-info">

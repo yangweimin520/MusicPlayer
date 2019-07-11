@@ -1,7 +1,7 @@
 <template>
   <div id="rankpage">
     <div class="singer-photo">
-      <img alt="singerphoto" v-lazy="imgurl">
+      <img :src="imgurl">
     </div>
     <div class="header-bar" :style="{background:background}" :class="{dark: isDark}">
       <div class="back-button" @touchend.prevent="hideSinger" @click="hideSinger">
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="action-button" @tochend.prevent="showMenu(index)" @click="showMenu(index)">
-            <img src="../assets/icon-...black.png" alt>
+            <img src="../assets/icon-...black.png">
           </div>
         </li>
       </ul>
